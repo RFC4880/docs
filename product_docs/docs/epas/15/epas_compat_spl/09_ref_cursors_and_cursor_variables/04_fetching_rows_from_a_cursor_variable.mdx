@@ -8,7 +8,7 @@ After a cursor variable is opened, rows may be retrieved from the result set usi
 
 In the example below, a `FETCH` statement has been added to the previous example so now the result set is returned into two variables and then displayed. Note that the cursor attributes used to determine cursor state of static cursors can also be used with cursor variables. See [Cursor Attributes](../08_static_cursors/06_cursor_attributes/#cursor_attributes) for details on cursor attributes.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE emp_by_dept (
     p_deptno        emp.deptno%TYPE
 )

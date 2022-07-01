@@ -26,7 +26,7 @@ If `attribute`, itself, is of an object type, then the reference must take the f
 
 The following example expands upon the previous anonymous block to display the values assigned to the `emp_obj_typ` object.
 
-```text
+```sql
 DECLARE
     v_emp          EMP_OBJ_TYP;
 BEGIN
@@ -42,7 +42,8 @@ END;
 
 The following is the output from this anonymous block.
 
-```text
+```sql
+__OUTPUT__
 Employee No   : 9001
 Name          : JONES
 Street        : 123 MAIN STREET
@@ -69,7 +70,7 @@ Static procedures or functions are not called utilizing an object variable. Inst
 
 The results of the previous anonymous block can be duplicated by calling the member procedure `display_emp:`
 
-```text
+```sql
 DECLARE
     v_emp          EMP_OBJ_TYP;
 BEGIN
@@ -81,7 +82,8 @@ END;
 
 The following is the output from this anonymous block.
 
-```text
+```sql
+__OUTPUT__
 Employee No   : 9001
 Name          : JONES
 Street        : 123 MAIN STREET
@@ -90,7 +92,7 @@ City/State/Zip: EDISON, NJ 08817
 
 The following anonymous block creates an instance of `dept_obj_typ` and calls the member procedure `display_dept:`
 
-```text
+```sql
 DECLARE
     v_dept          DEPT_OBJ_TYP := dept_obj_typ (20);
 BEGIN
@@ -100,14 +102,15 @@ END;
 
 The following is the output from this anonymous block.
 
-```text
+```sql
+__OUTPUT__
 Dept No    : 20
 Dept Name  : RESEARCH
 ```
 
 The static function defined in `dept_obj_typ` can be called directly by qualifying it by the object type name as follows:
 
-```text
+```sql
 BEGIN
     DBMS_OUTPUT.PUT_LINE(dept_obj_typ.get_dname(20));
 END;

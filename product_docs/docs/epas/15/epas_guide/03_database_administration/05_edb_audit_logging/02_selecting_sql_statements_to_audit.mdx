@@ -6,7 +6,7 @@ title: "Selecting SQL statements to audit"
 
 The `edb_audit_statement` permits inclusion of one or more, comma-separated values to control which SQL statements are to be audited. The following is the general format:
 
-```text
+```ini
 edb_audit_statement = 'value_1[, value_2]...'
 ```
 
@@ -147,7 +147,7 @@ The following are some DDL and DCL examples.
 
 The following is an example where `edb_audit_connect` and `edb_audit_statement` are set with the following non-default values:
 
-```text
+```ini
 logging_collector = 'on'
 edb_audit_connect = 'all'
 edb_audit_statement = 'create, alter, error'
@@ -157,24 +157,28 @@ Thus, only SQL statements invoked by the `CREATE` and `ALTER` commands are audit
 
 The database session that occurs is the following:
 
-```text
+```sql
 $ psql edb enterprisedb
 Password for user enterprisedb:
 psql.bin (14.0.0)
 Type "help" for help.
 
 edb=# SHOW edb_audit_connect;
+__OUTPUT__
  edb_audit_connect
 -------------------
  all
 (1 row)
-
+```
+```sql
 edb=# SHOW edb_audit_statement;
+__OUTPUT__
  edb_audit_statement
 ----------------------
  create, alter, error
 (1 row)
-
+```
+```sql
 edb=# CREATE ROLE adminuser;
 CREATE ROLE
 edb=# ALTER ROLE adminuser WITH LOGIN, SUPERUSER, PASSWORD 'password';
@@ -280,7 +284,7 @@ Note that the `DROP TABLE department` statement is not in the audit log since th
 
 The following is an example where `edb_audit_connect` and `edb_audit_statement` are set with the following non-default values:
 
-```text
+```ini
 logging_collector = 'on'
 edb_audit_connect = 'all'
 edb_audit_statement = 'create view,create materialized view,create sequence,grant'
@@ -290,24 +294,28 @@ Thus, only SQL statements invoked by the `CREATE VIEW`, `CREATE MATERIALIZED VIE
 
 The database session that occurs is the following:
 
-```text
+```sql
 $ psql auditdb adminuser
 Password for user adminuser:
 psql.bin (14.0.0)
 Type "help" for help.
 
 auditdb=# SHOW edb_audit_connect;
+__OUTPUT__
  edb_audit_connect
 -------------------
  all
 (1 row)
-
+```
+```sql
 auditdb=# SHOW edb_audit_statement;
+__OUTPUT__
                  edb_audit_statement
 ------------------------------------------------------------
  create view,create materialized view,create sequence,grant
 (1 row)
-
+```
+```sql
 auditdb=# SET search_path TO edb;
 SET
 auditdb=# CREATE TABLE emp (
@@ -381,7 +389,7 @@ The `CREATE SEQUENCE` and `GRANT` statements are audited since those values are 
 
 The following is an example where `edb_audit_connect` and `edb_audit_statement` are set with the following non-default values:
 
-```text
+```ini
 logging_collector = 'on'
 edb_audit_connect = 'all'
 edb_audit_statement = 'none'
@@ -389,7 +397,7 @@ edb_audit_statement = 'none'
 
 The session for users who connect as `ADMIN` or `SYSDBA` can be fully audited. An admin user is connected to a database `auditdb` as `ADMINUSER`, the following `ALTER USER` command specifies that `ADMINUSER` is to be audited.
 
-```text
+```sql
 ALTER USER adminuser SET edb_audit_statement = "all";
 ```
 
@@ -397,24 +405,28 @@ Setting the `edb_audit_statement` parameter to `all` allows auditing all of the 
 
 The database session that occurs is the following:
 
-```text
+```sql
 $ psql auditdb adminuser
 Password for user adminuser:
 psql.bin (14.0.0)
 Type "help" for help.
 
 auditdb=# SHOW edb_audit_connect;
+__OUTPUT__
  edb_audit_connect
 -------------------
  all
 (1 row)
-
+```
+```sql
 auditdb=# SHOW edb_audit_statement;
+__OUTPUT__
  edb_audit_statement 
 ---------------------
  all
 (1 row)
-
+```
+```sql
 auditdb=# SET search_path TO edb;
 SET
 auditdb=> CREATE TABLE dept
@@ -431,13 +443,15 @@ INSERT 0 1
 auditdb=>  UPDATE dept SET loc = 'BEDFORD' WHERE deptno = 20;
 UPDATE 1
 auditdb=> SELECT * FROM dept;
+__OUTPUT__
  deptno |   dname    |   loc    
 --------+------------+----------
      10 | ACCOUNTING | NEW YORK
      30 | SALES      | CHICAGO
      20 | RESEARCH   | BEDFORD
 (3 rows)
-
+```
+```sql
 auditdb=> DELETE FROM emp WHERE deptno = 40;
 ERROR:  relation "emp" does not exist
 LINE 1: DELETE FROM emp WHERE deptno = 40;
@@ -445,6 +459,7 @@ LINE 1: DELETE FROM emp WHERE deptno = 40;
 auditdb=> DELETE FROM dept WHERE deptno = 10;
 DELETE 1
 auditdb=> SELECT * FROM dept;
+__OUTPUT__
  deptno |  dname   |   loc   
 --------+----------+---------
      30 | SALES    | CHICAGO
@@ -520,7 +535,7 @@ eb3a,14,"idle",2021-06-23 06:08:59 IST,4/29,0,AUDIT,00000,"statement: SELECT * F
 
 The following is an example where `edb_audit_connect` and `edb_audit_statement` are set with the following non-default values:
 
-```text
+```ini
 logging_collector = 'on'
 edb_audit_connect = 'all'
 edb_audit_statement = 'all'
@@ -528,7 +543,7 @@ edb_audit_statement = 'all'
 
 The audit session for a user `carol` can be fully blocked by the database administrators using the `ALTER USER` command:
 
-```text
+```sql
 ALTER USER carol SET edb_audit_statement = "none";
 ```
 
@@ -537,24 +552,28 @@ ALTER USER carol SET edb_audit_statement = "none";
     
 The database session that occurs is the following:
 
-```text
+```sql
 $ psql auditdb carol
 Password for user carol:
 psql.bin (14.0.0)
 Type "help" for help.
 
 auditdb=# SHOW edb_audit_connect;
+__OUTPUT__
  edb_audit_connect
 -------------------
  all
 (1 row)
-
+```
+```sql
 auditdb=# SHOW edb_audit_statement;
+__OUTPUT__
  edb_audit_statement 
 ---------------------
  none
 (1 row)
-
+```
+```sql
 auditdb=# SET search_path TO edb;
 SET
 auditdb=> CREATE TABLE salgrade
@@ -597,7 +616,7 @@ Use the following syntax to specify an `edb_audit_statement` parameter value for
 
 The following is an example where `edb_audit_connect` and `edb_audit_statement` are set with the following non-default values:
 
-```text
+```ini
 logging_collector = 'on'
 edb_audit_connect = 'all'
 edb_audit_statement = 'UPDATE, DELETE, error'
@@ -607,24 +626,28 @@ Thus, only SQL statements invoked by the `UPDATE` and `DELETE` commands are audi
 
 The database session that occurs is the following:
 
-```text
+```sql
 $ psql auditdb adminuser
 Password for user adminuser:
 psql.bin (14.0.0)
 Type "help" for help.
 
 auditdb=# SHOW edb_audit_connect;
+__OUTPUT__
  edb_audit_connect
 -------------------
  all
 (1 row)
-
+```
+```sql
 auditdb=# SHOW edb_audit_statement;
+__OUTPUT__
  edb_audit_statement
 -----------------------
  UPDATE, DELETE, error
 (1 row)
-
+```
+```sql
 auditdb=# SET search_path TO edb;
 SET
 auditdb=# INSERT INTO dept VALUES (10,'ACCOUNTING','NEW YORK');
@@ -649,6 +672,7 @@ INSERT 0 1
 auditdb=# UPDATE dept SET loc = 'BEDFORD' WHERE deptno = 40;
 UPDATE 1
 auditdb=# SELECT * FROM dept;
+__OUTPUT__
  deptno |   dname    |   loc
 --------+------------+----------
      10 | ACCOUNTING | NEW YORK
@@ -656,7 +680,8 @@ auditdb=# SELECT * FROM dept;
      30 | SALES      | CHICAGO
      40 | OPERATIONS | BEDFORD
 (4 rows)
-
+```
+```sql
 auditdb=# DELETE FROM emp WHERE deptno = 10;
 DELETE 3
 auditdb=# TRUNCATE employee;

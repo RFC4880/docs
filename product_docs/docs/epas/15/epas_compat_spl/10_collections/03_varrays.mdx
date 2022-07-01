@@ -18,7 +18,7 @@ A varray has the following characteristics:
 
 The `TYPE IS VARRAY` statement is used to define a varray type within the declaration section of an SPL program.
 
-```text
+```sql
 TYPE <varraytype> IS { VARRAY | VARYING ARRAY }(<maxsize>)
   OF { <datatype> | <objtype> };
 ```
@@ -46,7 +46,7 @@ If a collection method other than `EXISTS` is applied to an uninitialized varray
 
 The following is an example of a constructor for a varray:
 
-```text
+```sql
 DECLARE
     TYPE varray_typ IS VARRAY(2) OF CHAR(1);
     v_varray        varray_typ := varray_typ('A','B');
@@ -62,7 +62,7 @@ An element of the varray is referenced using the following syntax.
 
 The following is an example of a varray where it is known that there are four elements.
 
-```text
+```sql
 DECLARE
     TYPE dname_varray_typ IS VARRAY(4) OF VARCHAR2(14);
     dname_varray    dname_varray_typ;
@@ -84,7 +84,8 @@ END;
 
 The above example produces the following output:
 
-```text
+```sql
+__OUTPUT__
 DNAME
 ----------
 ACCOUNTING

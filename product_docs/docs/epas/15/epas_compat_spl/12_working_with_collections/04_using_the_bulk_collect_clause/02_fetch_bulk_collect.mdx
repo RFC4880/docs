@@ -6,7 +6,7 @@ title: "FETCH BULK COLLECT"
 
 The `BULK COLLECT` clause can be used with a `FETCH` statement. (See [Fetching Rows From a Cursor](../../08_static_cursors/03_fetching_rows_from_a_cursor/#fetching_rows_from_a_cursor) for information on the `FETCH` statement.) Instead of returning a single row at a time from the result set, the `FETCH BULK COLLECT` returns all rows at once from the result set into the specified collection unless restricted by the `LIMIT` clause.
 
-```text
+```sql
 FETCH <name> BULK COLLECT INTO <collection> [, ...] [ LIMIT <n> ];
 ```
 
@@ -14,7 +14,7 @@ If a single collection is specified, then `collection` may be a collection of a 
 
 The following example uses the `FETCH BULK COLLECT` statement to retrieve rows into an associative array.
 
-```text
+```sql
 DECLARE
     TYPE emp_tbl IS TABLE OF emp%ROWTYPE INDEX BY BINARY_INTEGER;
     t_emp           EMP_TBL;
@@ -37,7 +37,7 @@ BEGIN
             t_emp(i).deptno);
     END LOOP;
 END;
-
+__OUTPUT__
 EMPNO  ENAME    JOB        HIREDATE    SAL        COMM      DEPTNO
 -----  -------  ---------  ---------   --------   --------  ------
 7369   SMITH    CLERK      17-DEC-80     800.00        .00  20

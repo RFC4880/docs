@@ -15,7 +15,7 @@ A *nested table* is a type of collection that associates a positive integer with
 
 The `TYPE IS TABLE` statement is used to define a nested table type within the declaration section of an SPL program.
 
-```text
+```sql
 TYPE <tbltype> IS TABLE OF { <datatype> | <rectype> | <objtype> };
 ```
 
@@ -34,7 +34,7 @@ In order to make use of the table, a *variable* must be declared of that nested 
 
 A nested table is initialized using the nested table type’s constructor.
 
-```text
+```sql
 <tbltype> ([ { <expr1> | NULL } [, { <expr2> | NULL } ] [, ...] ])
 ```
 
@@ -44,7 +44,7 @@ If a collection method other than `EXISTS` is applied to an uninitialized nested
 
 The following is an example of a constructor for a nested table:
 
-```text
+```sql
 DECLARE
     TYPE nested_typ IS TABLE OF CHAR(1);
     v_nested        nested_typ := nested_typ('A','B');
@@ -60,7 +60,7 @@ An element of the table is referenced using the following syntax.
 
 The following is an example of a nested table where it is known that there are four elements.
 
-```text
+```sql
 DECLARE
     TYPE dname_tbl_typ IS TABLE OF VARCHAR2(14);
     dname_tbl       dname_tbl_typ;
@@ -82,7 +82,8 @@ END;
 
 The above example produces the following output:
 
-```text
+```sql
+__OUTPUT__
 DNAME
 ----------
 ACCOUNTING
@@ -93,7 +94,7 @@ SALES
 
 The following example reads the first ten employee names from the `emp` table, stores them in a nested table, then displays the results from the table. The SPL code is written to assume that the number of employees to be returned is not known beforehand.
 
-```text
+```sql
 DECLARE
     TYPE emp_rec_typ IS RECORD (
         empno       NUMBER(4),
@@ -123,7 +124,8 @@ Note the creation of an empty table with the constructor `emp_tbl_typ()` as the 
 
 The following is the output.
 
-```text
+```sql
+__OUTPUT__
 EMPNO    ENAME
 -----    -------
 7369     SMITH
@@ -140,7 +142,7 @@ EMPNO    ENAME
 
 The following example shows how a nested table of an object type can be used. First, an object type is created with attributes for the department name and location.
 
-```text
+```sql
 CREATE TYPE dept_obj_typ AS OBJECT (
     dname           VARCHAR2(14),
     loc             VARCHAR2(13)
@@ -149,7 +151,7 @@ CREATE TYPE dept_obj_typ AS OBJECT (
 
 The following anonymous block defines a nested table type whose element consists of the `dept_obj_typ` object type. A nested table variable is declared, initialized, and then populated from the `dept` table. Finally, the elements from the nested table are displayed.
 
-```text
+```sql
 DECLARE
     TYPE dept_tbl_typ IS TABLE OF dept_obj_typ;
     dept_tbl        dept_tbl_typ;
@@ -178,7 +180,8 @@ END;
 
 The parameters comprising the nested table’s constructor, `dept_tbl_typ`, are calls to the object type’s constructor `dept_obj_typ.` The following is the output from the anonymous block:
 
-```text
+```sql
+__OUTPUT__
 DNAME          LOC
 ----------     ----------
 ACCOUNTING     NEW YORK

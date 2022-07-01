@@ -16,7 +16,7 @@ Note, however, that the runtime performance of dynamic SQL is slower than static
 
 The `EXECUTE IMMEDIATE` command is used to run SQL commands dynamically.
 
-```text
+```sql
 EXECUTE IMMEDIATE '<sql_expression>;'
   [ INTO { <variable> [, ...] | <record> } ]
   [ USING <expression> [, ...] ]
@@ -26,7 +26,7 @@ EXECUTE IMMEDIATE '<sql_expression>;'
 
 The following example shows basic dynamic SQL commands as string literals.
 
-```text
+```sql
 DECLARE
     v_sql           VARCHAR2(50);
 BEGIN
@@ -41,7 +41,7 @@ END;
 
 The following example illustrates the `USING` clause to pass values to placeholders in the SQL string.
 
-```text
+```sql
 DECLARE
     v_sql           VARCHAR2(50) := 'INSERT INTO job VALUES ' ||
                         '(:p_jobno, :p_jname)';
@@ -62,7 +62,7 @@ END;
 
 The following example shows both the `INTO` and `USING` clauses. Note the last execution of the `SELECT` command returns the results into a record instead of individual variables.
 
-```text
+```sql
 DECLARE
     v_sql           VARCHAR2(60);
     v_jobno         job.jobno%TYPE;
@@ -87,7 +87,8 @@ END;
 
 The following is the output from the previous anonymous block:
 
-```text
+```sql
+__OUTPUT__
 JOBNO    JNAME
 -----    -------
 100      ANALYST

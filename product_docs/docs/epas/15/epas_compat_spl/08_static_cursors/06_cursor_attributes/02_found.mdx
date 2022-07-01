@@ -20,7 +20,7 @@ Referencing `%FOUND` on a cursor before it is opened or after it is closed resul
 
 The following example uses `%FOUND`.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     v_emp_rec       emp%ROWTYPE;
@@ -40,9 +40,9 @@ END;
 
 When the previous procedure is invoked, the output appears as follows:
 
-```text
+```sql
 EXEC cursor_example;
-
+__OUTPUT__
 EMPNO    ENAME
 -----    ------
 7369     SMITH

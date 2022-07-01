@@ -20,7 +20,7 @@ Referencing `%NOTFOUND` on a cursor before it is opened or after it is closed, r
 
 The following example uses `%NOTFOUND`.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     v_emp_rec       emp%ROWTYPE;
@@ -40,9 +40,9 @@ END;
 
 Similar to the prior example, this procedure produces the same output when invoked.
 
-```text
+```sql
 EXEC cursor_example;
-
+__OUTPUT__
 EMPNO    ENAME
 -----    ------
 7369     SMITH

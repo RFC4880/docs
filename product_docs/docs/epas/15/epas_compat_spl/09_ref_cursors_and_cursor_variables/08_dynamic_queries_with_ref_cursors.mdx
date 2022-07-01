@@ -6,7 +6,7 @@ title: "Dynamic queries with REF CURSOR"
 
 EDB Postgres Advanced Server also supports dynamic queries via the `OPEN FOR USING` statement. A string literal or string variable is supplied in the `OPEN FOR USING` statement to the `SELECT` command.
 
-```text
+```sql
 OPEN <name> FOR <dynamic_string>
   [ USING <bind_arg> [, <bind_arg_2> ] ...];
 ```
@@ -15,7 +15,7 @@ OPEN <name> FOR <dynamic_string>
 
 The following is an example of a dynamic query using a string literal.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE dept_query
 IS
     emp_refcur      SYS_REFCURSOR;
@@ -37,9 +37,9 @@ END;
 
 The following is the output when the procedure is executed.
 
-```text
+```sql
 EXEC dept_query;
-
+__OUTPUT__
 EMPNO    ENAME
 -----    -------
 7499     ALLEN
@@ -49,7 +49,7 @@ EMPNO    ENAME
 
 In the next example, the previous query is modified to use bind arguments to pass the query parameters.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE dept_query (
     p_deptno        emp.deptno%TYPE,
     p_sal           emp.sal%TYPE
@@ -74,9 +74,9 @@ END;
 
 The following is the resulting output.
 
-```text
+```sql
 EXEC dept_query(30, 1500);
-
+__OUTPUT__
 EMPNO    ENAME
 -----    -------
 7499     ALLEN
@@ -86,7 +86,7 @@ EMPNO    ENAME
 
 Finally, a string variable is used to pass the `SELECT` providing the most flexibility.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE dept_query (
     p_deptno        emp.deptno%TYPE,
     p_sal           emp.sal%TYPE
@@ -110,7 +110,7 @@ BEGIN
     CLOSE emp_refcur;
 END;
 EXEC dept_query(20, 1500);
-
+__OUTPUT__
 EMPNO    ENAME
 -----    -------
 7566     JONES

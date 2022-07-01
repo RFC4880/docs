@@ -6,7 +6,7 @@ title: "EXISTS"
 
 The `EXISTS` method verifies that a subscript exists within a collection. `EXISTS` returns `TRUE` if the subscript exists; if the subscript does not exist, `EXISTS` returns `FALSE`. The method takes a single argument; the `subscript` that you are testing for. The syntax is:
 
-```text
+```sql
 <collection>.EXISTS(<subscript>)
 ```
 
@@ -16,7 +16,7 @@ The `EXISTS` method verifies that a subscript exists within a collection. `EXIST
 
 The following example verifies that subscript number `10` exists within the associative array:
 
-```text
+```sql
 DECLARE
     TYPE sparse_arr_typ IS TABLE OF NUMBER INDEX BY BINARY_INTEGER;
     sparse_arr      sparse_arr_typ;

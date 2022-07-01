@@ -6,7 +6,7 @@ title: "Opening a cursor"
 
 Before a cursor can be used to retrieve rows, it must first be opened. This is accomplished with the `OPEN` statement.
 
-```text
+```sql
 OPEN <name>;
 ```
 
@@ -14,7 +14,7 @@ OPEN <name>;
 
 The following shows an `OPEN` statement with its corresponding cursor declaration.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     CURSOR emp_cur_3 IS SELECT empno, ename FROM emp WHERE deptno = 10

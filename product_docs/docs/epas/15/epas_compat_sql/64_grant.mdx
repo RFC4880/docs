@@ -20,7 +20,7 @@ legacyRedirectsGenerated:
 
 ## Synopsis
 
-```text
+```sql
 GRANT { { SELECT | INSERT | UPDATE | DELETE | REFERENCES }
   [,...] | ALL [ PRIVILEGES ] }
   ON tablename
@@ -173,13 +173,13 @@ Currently, EDB Postgres Advanced Server does not support granting or revoking pr
 
 Grant insert privilege to all users on table `emp`:
 
-```text
+```sql
 GRANT INSERT ON emp TO PUBLIC;
 ```
 
 Grant all available privileges to user `mary` on view `salesemp`:
 
-```text
+```sql
 GRANT ALL PRIVILEGES ON salesemp TO mary;
 ```
 
@@ -187,13 +187,13 @@ Note that while the above will indeed grant all privileges if executed by a supe
 
 Grant membership in role `admins` to user `joe`:
 
-```text
+```sql
 GRANT admins TO joe;
 ```
 
 Grant `CONNECT` privilege to user `joe`:
 
-```text
+```sql
 GRANT CONNECT TO joe;
 ```
 
@@ -219,7 +219,7 @@ The `EXEMPT ACCESS POLICY` privilege allows a role to execute a SQL command with
 
 The `EXEMPT ACCESS POLICY` privilege is not inheritable by membership to a role that has the `EXEMPT ACCESS POLICY` privilege. For example, the following sequence of `GRANT` commands does not result in user `joe` obtaining the `EXEMPT ACCESS POLICY` privilege even though `joe` is granted membership to the `enterprisedb` role, which has been granted the `EXEMPT ACCESS POLICY` privilege:
 
-```text
+```sql
 GRANT EXEMPT ACCESS POLICY TO enterprisedb;
 GRANT enterprisedb TO joe;
 ```
@@ -230,19 +230,19 @@ The `rolpolicyexempt` column of the system catalog table `pg_authid` is set to `
 
 Grant `CREATE PUBLIC DATABASE LINK` privilege to user `joe`:
 
-```text
+```sql
 GRANT CREATE PUBLIC DATABASE LINK TO joe;
 ```
 
 Grant `DROP PUBLIC DATABASE LINK` privilege to user `joe`:
 
-```text
+```sql
 GRANT DROP PUBLIC DATABASE LINK TO joe;
 ```
 
 Grant the `EXEMPT ACCESS POLICY` privilege to user `joe`:
 
-```text
+```sql
 GRANT EXEMPT ACCESS POLICY TO joe;
 ```
 

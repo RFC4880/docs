@@ -6,7 +6,7 @@ title: "EXTEND"
 
 The `EXTEND` method increases the size of a collection. There are three variations of the `EXTEND` method. The first variation appends a single `NULL` element to a collection; the syntax for the first variation is:
 
-```text
+```sql
 <collection>.EXTEND
 ```
 
@@ -14,7 +14,7 @@ The `EXTEND` method increases the size of a collection. There are three variatio
 
 The following example demonstrates using the `EXTEND` method to append a single, null element to a collection:
 
-```text
+```sql
 DECLARE
     TYPE sparse_arr_typ IS TABLE OF NUMBER;
     sparse_arr      sparse_arr_typ := sparse_arr_typ(-100,-10,0,10,100);
@@ -42,7 +42,7 @@ Results: -100 -10 0 10 100 NULL
 
 The second variation of the `EXTEND` method appends a specified number of elements to the end of a collection.
 
-```text
+```sql
 <collection>.EXTEND(<count>)
 ```
 
@@ -52,7 +52,7 @@ The second variation of the `EXTEND` method appends a specified number of elemen
 
 The following example demonstrates using the `EXTEND` method to append multiple null elements to a collection:
 
-```text
+```sql
 DECLARE
     TYPE sparse_arr_typ IS TABLE OF NUMBER;
     sparse_arr      sparse_arr_typ := sparse_arr_typ(-100,-10,0,10,100);
@@ -80,7 +80,7 @@ Results: -100 -10 0 10 100 NULL NULL NULL
 
 The third variation of the `EXTEND` method appends a specified number of copies of a particular element to the end of a collection.
 
-```text
+```sql
 <collection>.EXTEND(<count>, <index_number>)
 ```
 
@@ -92,7 +92,7 @@ The third variation of the `EXTEND` method appends a specified number of copies 
 
 The following example demonstrates using the `EXTEND` method to append multiple copies of the second element to the collection:
 
-```text
+```sql
 DECLARE
     TYPE sparse_arr_typ IS TABLE OF NUMBER;
     sparse_arr      sparse_arr_typ := sparse_arr_typ(-100,-10,0,10,100);

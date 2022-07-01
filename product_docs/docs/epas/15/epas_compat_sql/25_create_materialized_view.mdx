@@ -14,7 +14,7 @@ legacyRedirectsGenerated:
 
 ## Synopsis
 
-```text
+```sql
 CREATE MATERIALIZED VIEW <name>
    [<build_clause>][<create_mv_refresh>] AS subquery
 
@@ -72,7 +72,7 @@ For more information about the Postgres `REFRESH MATERIALIZED VIEW` command, see
 
 The following statement creates a materialized view named `dept_30`:
 
-```text
+```sql
 CREATE MATERIALIZED VIEW dept_30 BUILD IMMEDIATE AS SELECT * FROM emp WHERE deptno = 30;
 ```
 

@@ -28,7 +28,7 @@ This parameter has no effect in EDB Postgres Advanced Server.
 
 For example, the form of the `ALTER SESSION` command is accepted in EDB Postgres Advanced Server without throwing a syntax error, but does not alter the session environment:
 
-```text
+```sql
 ALTER SESSION SET nls_length_semantics = char;
 ```
 
@@ -53,7 +53,7 @@ This parameter has no effect in EDB Postgres Advanced Server.
 
 For example, the following form of the `ALTER SESSION` command is accepted in EDB Postgres Advanced Server without throwing a syntax error, but does not alter the session environment:
 
-```text
+```sql
 ALTER SESSION SET query_rewrite_enabled = force;
 ```
 
@@ -78,7 +78,7 @@ This parameter has no effect in EDB Postgres Advanced Server.
 
 For example, the following form of the `ALTER SESSION` command is accepted in EDB Postgres Advanced Server without throwing a syntax error, but does not alter the session environment:
 
-```text
+```sql
 ALTER SESSION SET query_rewrite_integrity = stale_tolerated;
 ```
 

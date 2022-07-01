@@ -6,7 +6,7 @@ title: "Fetching rows From a cursor"
 
 Once a cursor has been opened, rows can be retrieved from the cursor’s result set by using the `FETCH` statement.
 
-```text
+```sql
 FETCH <name> INTO { <record> | <variable> [, <variable_2> ]... };
 ```
 
@@ -17,7 +17,7 @@ FETCH <name> INTO { <record> | <variable> [, <variable_2> ]... };
 
 The following shows the `FETCH` statement.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     v_empno         NUMBER(4);
@@ -33,7 +33,7 @@ END;
 
 Instead of explicitly declaring the data type of a target variable, `%TYPE` can be used instead. In this way, if the data type of the database column is changed, the target variable declaration in the SPL program does not have to be changed. `%TYPE` automatically picks up the new data type of the specified column.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     v_empno         emp.empno%TYPE;
@@ -49,7 +49,7 @@ END;
 
 If all the columns in a table are retrieved in the order defined in the table, `%ROWTYPE` can be used to define a record into which the `FETCH` statement places the retrieved data. Each field within the record can then be accessed using dot notation.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     v_emp_rec       emp%ROWTYPE;

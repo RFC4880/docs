@@ -10,7 +10,7 @@ title: "SET ROLE"
 
 ## Synopsis
 
-```text
+```sql
 SET ROLE { rolename | NONE }
 ```
 
@@ -30,12 +30,12 @@ You can use this command, to either add privileges or restrict one's privileges.
 
 User `mary` takes on the identity of role `admins`:
 
-```text
+```sql
 SET ROLE admins;
 ```
 
 User `mary` reverts back to her own identity:
 
-```text
+```sql
 SET ROLE NONE;
 ```

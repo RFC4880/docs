@@ -10,7 +10,7 @@ title: "INSERT"
 
 ## Synopsis
 
-```text
+```sql
 INSERT INTO <table>[@<dblink> | [ AS ] <alias> ] [ ( <column> [, ...] ) ]
   { VALUES ( { <expression> | DEFAULT } [, ...] )
     [ RETURNING <return_expression> [, ...]
@@ -89,26 +89,26 @@ You must have `INSERT` privilege to a table in order to insert into it. If you u
 
 Insert a single row into table `emp`:
 
-```text
+```sql
 INSERT INTO emp VALUES (8021,'JOHN','SALESMAN',7698,'22-FEB-07',1250,500,30);
 ```
 
 In this second example, the column, `comm`, is omitted and therefore it will have the default value of null:
 
-```text
+```sql
 INSERT INTO emp (empno, ename, job, mgr, hiredate, sal, deptno)
     VALUES (8022,'PETERS','CLERK',7698,'03-DEC-06',950,30);
 ```
 
 The third example uses the `DEFAULT` clause for the `hiredate` and `comm` columns rather than specifying a value:
 
-```text
+```sql
 INSERT INTO emp VALUES (8023,'FORD','ANALYST',7566,NULL,3000,NULL,20);
 ```
 
 This example creates a table for the department names and then inserts into the table by selecting from the `dname` column of the `dept` table:
 
-```text
+```sql
 CREATE TABLE deptnames (
     deptname        VARCHAR2(14)
 );
@@ -117,7 +117,7 @@ INSERT INTO deptnames SELECT dname FROM dept;
 
 This example creates an alias `enm` for the table `emp` and inserts rows into a table:
 
-```text
+```sql
 INSERT INTO emp AS enm (enm.empno, enm.ename, enm.job, enm.mgr, enm.hiredate, enm.sal, enm.deptno)
   VALUES (7499, 'SMITH', 'ANALYST', 7902, '03-DEC-06', 2500, 20);
 ```  

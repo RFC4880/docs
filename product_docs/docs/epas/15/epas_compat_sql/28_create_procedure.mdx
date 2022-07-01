@@ -14,7 +14,7 @@ legacyRedirectsGenerated:
 
 ## Synopsis
 
-```text
+```sql
 CREATE [OR REPLACE] PROCEDURE <name> [ (<parameters>) ]
    [
           IMMUTABLE
@@ -154,7 +154,7 @@ To update the definition of an existing procedure, use `CREATE OR REPLACE PROCED
 
 The following procedure lists the employees in the `emp` table:
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE list_emp
 IS
     v_empno         NUMBER(4);
@@ -174,7 +174,7 @@ BEGIN
 END;
 
 EXEC list_emp;
-
+__OUTPUT__
 EMPNO    ENAME
 -----    -------
 7369     SMITH
@@ -195,7 +195,7 @@ EMPNO    ENAME
 
 The following procedure uses `IN OUT` and `OUT` arguments to return an employee’s number, name, and job based upon a search using first, the given employee number, and if that is not found, then using the given name. An anonymous block calls the procedure.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE emp_job (
     p_empno         IN OUT emp.empno%TYPE,
     p_ename         IN OUT emp.ename%TYPE,
@@ -240,7 +240,7 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE('Name       : ' || v_ename);
     DBMS_OUTPUT.PUT_LINE('Job        : ' || v_job);
 END;
-
+__OUTPUT__
 Found employee CLARK
 Employee No: 7782
 Name       : CLARK
@@ -249,7 +249,7 @@ Job        : MANAGER
 
 The following example demonstrates using the `AUTHID DEFINER` and `SET` clauses in a procedure declaration. The `update_salary` procedure conveys the privileges of the role that defined the procedure to the role that is calling the procedure (while the procedure executes):
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE update_salary(id INT, new_salary NUMBER)
   SET SEARCH_PATH = 'public' SET WORK_MEM = '1MB'
   AUTHID DEFINER IS

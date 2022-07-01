@@ -6,7 +6,7 @@ title: "Example: Setting an AUTOMATIC list partition"
 
 The example that follows modifies a table `sales` to use automatic list partition instead of regular list partitioning. Use the following command to create a `sales` table:
 
-```text
+```sql
 CREATE TABLE sales
 (
   dept_no      number,
@@ -24,14 +24,15 @@ PARTITION BY LIST(sales_state)
 
 To implement automatic list partitioning on the `sales` table, invoke the following command:
 
-```text
+```sql
 ALTER TABLE sales SET AUTOMATIC;
 ```
 
 Query the `ALL_TAB_PARTITIONS` view to see that an existing partition is successfully created.
 
-```text
+```sql
 edb=# SELECT table_name, partition_name, high_value FROM ALL_TAB_PARTITIONS;
+__OUTPUT__
  table_name | partition_name | high_value
 ------------+----------------+------------
  SALES      | P_KAN          | 'KANSAS'
@@ -41,15 +42,16 @@ edb=# SELECT table_name, partition_name, high_value FROM ALL_TAB_PARTITIONS;
 
 Now, insert data into the `sales` table to create a new partition and add the new value.
 
-```text
+```sql
 edb=# INSERT INTO sales VALUES (1, 'VIR', 'VIRGINIA');
 INSERT 0 1
 ```
 
 Then, query the `ALL_TAB_PARTITIONS` view again after the insert. The automatic list partition is successfully created and data is inserted. A system-generated name of the partition is created that varies for each session.
 
-```text
+```sql
 edb=# SELECT table_name, partition_name, high_value FROM ALL_TAB_PARTITIONS;
+__OUTPUT__
  table_name | partition_name | high_value
 ------------+----------------+------------
  SALES      | P_KAN          | 'KANSAS'

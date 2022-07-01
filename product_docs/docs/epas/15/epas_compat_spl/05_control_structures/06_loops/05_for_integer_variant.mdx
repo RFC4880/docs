@@ -4,7 +4,7 @@ title: "FOR (integer variant)"
 
 <div id="for_integer_variant" class="registered_link"></div>
 
-```text
+```sql
 FOR <name> IN [REVERSE] <expression .. expression> LOOP
     <statements>
 END LOOP;
@@ -16,7 +16,7 @@ The optional `REVERSE` clause specifies that the loop should iterate in reverse 
 
 The following example simplifies the `WHILE` loop example even further by using a `FOR` loop that iterates from 1 to 10.
 
-```text
+```sql
 BEGIN
     FOR i IN 1 .. 10 LOOP
         DBMS_OUTPUT.PUT_LINE('Iteration # ' || i);
@@ -26,7 +26,8 @@ END;
 
 Here is the output using the `FOR` statement.
 
-```text
+```sql
+__OUTPUT__
 Iteration # 1
 Iteration # 2
 Iteration # 3
@@ -41,7 +42,7 @@ Iteration # 10
 
 If the start value is greater than the end value the loop body is not executed at all. No error is raised as shown by the following example.
 
-```text
+```sql
 BEGIN
     FOR i IN 10 .. 1 LOOP
         DBMS_OUTPUT.PUT_LINE('Iteration # ' || i);

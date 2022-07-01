@@ -8,7 +8,7 @@ The following example illustrates how the various operations on cursor variables
 
 The following procedure opens the given cursor variable with a `SELECT` command that retrieves all rows.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE open_all_emp (
     p_emp_refcur    IN OUT SYS_REFCURSOR
 )
@@ -20,7 +20,7 @@ END;
 
 This variation opens the given cursor variable with a `SELECT` command that retrieves all rows, but of a given department.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE open_emp_by_dept (
     p_emp_refcur    IN OUT SYS_REFCURSOR,
     p_deptno        emp.deptno%TYPE
@@ -34,7 +34,7 @@ END;
 
 This third variation opens the given cursor variable with a `SELECT` command that retrieves all rows, but from a different table. Also note that the function’s return value is the opened cursor variable.
 
-```text
+```sql
 CREATE OR REPLACE FUNCTION open_dept (
     p_dept_refcur    IN OUT SYS_REFCURSOR
 ) RETURN SYS_REFCURSOR
@@ -49,7 +49,7 @@ END;
 
 This procedure fetches and displays a cursor variable result set consisting of employee number and name.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE fetch_emp (
     p_emp_refcur    IN OUT SYS_REFCURSOR
 )
@@ -69,7 +69,7 @@ END;
 
 This procedure fetches and displays a cursor variable result set consisting of department number and name.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE fetch_dept (
     p_dept_refcur   IN SYS_REFCURSOR
 )
@@ -89,7 +89,7 @@ END;
 
 This procedure closes the given cursor variable.
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE close_refcur (
     p_refcur        IN OUT SYS_REFCURSOR
 )
@@ -101,7 +101,7 @@ END;
 
 The following anonymous block executes all the previously described programs.
 
-```text
+```sql
 DECLARE
     gen_refcur      SYS_REFCURSOR;
 BEGIN
@@ -125,7 +125,8 @@ END;
 
 The following is the output from the anonymous block.
 
-```text
+```sql
+__OUTPUT__
 ALL EMPLOYEES
 EMPNO    ENAME
 -----    -------

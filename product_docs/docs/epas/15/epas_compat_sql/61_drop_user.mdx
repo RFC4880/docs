@@ -14,7 +14,7 @@ legacyRedirectsGenerated:
 
 ## Synopsis
 
-```text
+```sql
 DROP USER <name> [ CASCADE ]
 ```
 
@@ -42,13 +42,13 @@ Alternatively, if the only objects owned by the user belong within a schema that
 
 To drop a user account named `john` that owns no objects nor has been granted any privileges on other objects:
 
-```text
+```sql
 DROP USER john;
 ```
 
 To drop user account, `john`, who has not been granted any privileges on any objects, and does not own any objects outside of a schema named, `john`, that is owned by user, `john`:
 
-```text
+```sql
 DROP USER john CASCADE;
 ```
 

@@ -6,7 +6,7 @@ title: "Declaring a cursor"
 
 In order to use a cursor, it must first be declared in the declaration section of the SPL program. A cursor declaration appears as follows:
 
-```text
+```sql
 CURSOR <name> IS <query>;
 ```
 
@@ -17,7 +17,7 @@ CURSOR <name> IS <query>;
 
 The following are some examples of cursor declarations:
 
-```text
+```sql
 CREATE OR REPLACE PROCEDURE cursor_example
 IS
     CURSOR emp_cur_1 IS SELECT * FROM emp;

@@ -24,7 +24,7 @@ If `pg_prewarm.autoprewarm` is set to on, the `autoprewarm` worker is enabled. I
 
 Before `autoprewarm` can be used, you must add `$libdir/pg_prewarm` to the libraries listed in the `shared_preload_libraries` configuration parameter of the `postgresql.conf` file as shown by the following example:
 
-```text
+```ini
 shared_preload_libraries = '$libdir/dbms_pipe,$libdir/edb_gen,$libdir/dbms_aq,$libdir/pg_prewarm'
 ```
 
