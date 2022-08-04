@@ -14,12 +14,6 @@ EXECUTE IMMEDIATE '<sql_expression>;'
 
 `collection` specifies the name of a collection.
 
-`bind_type` specifies the parameter mode of the `bind_argument`.
-
--   A `bind_type` of `IN` specifies that the `bind_argument` contains a value that is passed to the `sql_expression`.
--   A `bind_type` of `OUT` specifies that the `bind_argument` receives a value from the `sql_expression`.
--   A `bind_type` of `IN OUT` specifies that the `bind_argument` is passed to `sql_expression`, and then stores the value returned by `sql_expression`.
-
-`bind_argument` specifies a parameter that contains a value that is either passed to the `sql_expression` (specified with a `bind_type` of `IN`), or that receives a value from the `sql_expression` (specified with a `bind_type` of `OUT`), or both (specified with a `bind_type` of `IN OUT`).
+Currently all the `bind_type` is ignored and `bind_argument` is treated as `IN OUT`.
 
 If a single collection is specified, then `collection` may be a collection of a single field, or a collection of a record type; if more than one collection is specified, each `collection` must consist of a single field.
