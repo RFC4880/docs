@@ -10,7 +10,7 @@ This section describes the configuration parameters used for planner method conf
 
 **Parameter type:** Boolean
 
-**Default value:** `true`
+**Default value:** `false`
 
 **Range:** `{true | false}`
 
@@ -27,3 +27,6 @@ Conversely, `late-pruning` means that the query planner prunes partitions `after
 The ability to early-prune depends upon the nature of the query in the `WHERE` clause. Early-pruning can be utilized in only simple queries with constraints of the type `WHERE column = literal` (e.g., `WHERE deptno = 10)`.
 
 Early-pruning is not used for more complex queries such as `WHERE column = expression` (e.g., `WHERE deptno = 10 + 5)`.
+
+!!! Note
+    This parameter is deprecated from version 15 onwards.
