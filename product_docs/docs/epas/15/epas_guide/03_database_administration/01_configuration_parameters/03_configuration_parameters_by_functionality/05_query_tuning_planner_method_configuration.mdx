@@ -29,4 +29,4 @@ The ability to early-prune depends upon the nature of the query in the `WHERE` c
 Early-pruning is not used for more complex queries such as `WHERE column = expression` (e.g., `WHERE deptno = 10 + 5)`.
 
 !!! Note
-    This parameter is deprecated from version 15 onwards.
+    This parameter is deprecated from version 15 onwards, use `enable_partition_pruning` instead.
