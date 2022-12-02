@@ -92,9 +92,9 @@ The `edb_dblink_oci` supports both types of rescans: `SCROLL` and `SERIALIZABLE`
 
     To create a non-public database link you must have the `CREATE DATABASE LINK` privilege. To create a public database link you must have the `CREATE PUBLIC DATABASE LINK` privilege.
 
-## Setting up an Oracle instant client for oci-dblink
+## Setting up an Oracle instant client for OCI database link
 
-In order to use oci-dblink, an Oracle instant client must be downloaded and installed on the host running the EDB Postgres Advanced Server database in which the database link is to be created.
+In order to use `edb_dblink_oci`, an Oracle instant client must be downloaded and installed on the host running the EDB Postgres Advanced Server database in which the database link is to be created.
 
 An instant client can be downloaded from the following site:
 
@@ -210,9 +210,9 @@ After setting the `PATH` environment variable or the `oracle_home` configuration
 
 ## Examples
 
-### Creating an oci-dblink database link
+### Creating an OCI database link
 
-The following example demonstrates using the `CREATE DATABASE LINK` command to create a database link (named `chicago`) that connects an instance of EDB Postgres Advanced Server to an Oracle server via an oci-dblink connection. The connection information tells EDB Postgres Advanced Server to log in to Oracle as user `admin`, whose password is `mypassword`. Including the `oci` option tells EDB Postgres Advanced Server that this is an oci-dblink connection; the connection string, `'//127.0.0.1/acctg'` specifies the server address and name of the database.
+The following example demonstrates using the `CREATE DATABASE LINK` command to create a database link (named `chicago`) that connects an instance of EDB Postgres Advanced Server to an Oracle server via an `edb_dblink_oci` connection. The connection information tells EDB Postgres Advanced Server to log in to Oracle as user `admin`, whose password is `mypassword`. Including the `oci` option tells EDB Postgres Advanced Server that this is an `edb_dblink_oci` connection; the connection string, `'//127.0.0.1/acctg'` specifies the server address and name of the database.
 
 ```sql
 CREATE DATABASE LINK chicago
@@ -315,9 +315,9 @@ __OUTPUT__
 (14 rows)
 ```
 
-## Pushdown for an oci database link
+## Pushdown for an OCI database link
 
-When the oci-dblink is used to execute SQL statements on a remote Oracle database, there are certain circumstances where pushdown of the processing occurs on the foreign server.
+When the OCI database link is used to execute SQL statements on a remote Oracle database, there are certain circumstances where pushdown of the processing occurs on the foreign server.
 
 *Pushdown* refers to the occurrence of processing on the foreign (that is, the remote) server instead of the local client where the SQL statement was issued. Pushdown can result in performance improvement since the data is processed on the remote server before being returned to the local client.
 
